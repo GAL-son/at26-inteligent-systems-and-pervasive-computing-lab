@@ -1,0 +1,268 @@
+[
+    {
+        "id": "8a5aa3448c379ad1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c1633dfb8f165f50",
+        "type": "inject",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "21",
+        "payloadType": "num",
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "c7cb826c4791cac1"
+            ]
+        ]
+    },
+    {
+        "id": "cb2fccccdfd99121",
+        "type": "inject",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25",
+        "payloadType": "num",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "c7cb826c4791cac1"
+            ]
+        ]
+    },
+    {
+        "id": "2c92a2435301fda7",
+        "type": "inject",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "28",
+        "payloadType": "num",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "c7cb826c4791cac1"
+            ]
+        ]
+    },
+    {
+        "id": "c7cb826c4791cac1",
+        "type": "mqtt out",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "topic": "at/sala/112/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5e2ad5f59befcef6",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "82397942303b5f6e",
+        "type": "switch",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "26",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "a561c78b698b5351"
+            ]
+        ]
+    },
+    {
+        "id": "567c18353d205494",
+        "type": "mqtt in",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "topic": "at/sala/112/temperatura",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "5e2ad5f59befcef6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 440,
+        "wires": [
+            [
+                "3bdb1a286ffaebf7"
+            ]
+        ]
+    },
+    {
+        "id": "a561c78b698b5351",
+        "type": "debug",
+        "z": "8a5aa3448c379ad1",
+        "name": "Alarm",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "\"Tempaeratura za wyskoka\"",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3bdb1a286ffaebf7",
+        "type": "json",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "82397942303b5f6e",
+                "d2cde002f124778b"
+            ]
+        ]
+    },
+    {
+        "id": "a378e18fe6b13de0",
+        "type": "debug",
+        "z": "8a5aa3448c379ad1",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d2cde002f124778b",
+        "type": "delay",
+        "z": "8a5aa3448c379ad1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 520,
+        "wires": [
+            [
+                "a378e18fe6b13de0"
+            ]
+        ]
+    },
+    {
+        "id": "5e2ad5f59befcef6",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost:1883 ",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
